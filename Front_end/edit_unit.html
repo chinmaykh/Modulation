@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="modulesApp">
+
+<head>
+  <!--First the metadata-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons&display=swap" rel="stylesheet">
+  <!--Next the stylesheets-->
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!--MathJax-->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Sortable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.1/Sortable.min.js"></script>
+
+  <!-- The title -->
+  <title>Modulation </title>
+</head>
+
+
+<style>
+  body {
+    color: black;
+  }
+
+  .font-primary {
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .font-secondary {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .article-header {
+    padding-top: 56px;
+    margin-bottom: 64px;
+    text-transform: capitalize;
+  }
+
+  .sub-text {
+    font-size: 14px;
+  }
+
+  .unit {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .unit-content {
+    font-size: 18px;
+  }
+
+  .unit-head {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-transform: capitalize;
+  }
+
+  code {
+    background-color: #f7f7f7
+  }
+
+  .equation {
+    background-color: #f7f7f7
+  }
+
+  .unit-edit-head {
+    border-style: solid;
+    border-color: black;
+    border-radius: 20px;
+    margin: 10px;
+    border-width: thin;
+  }
+</style>
+
+<body ng-controller='UnitEditController'>
+  <!--Content starts here-->
+  <div class="navbar-fixed">
+    <nav class="z-depth-2">
+      <div class="nav-wrapper row white">
+        <div class="col s12">
+          <a href="#!" class="brand-logo black-text font-primary truncate">Edit Mode</a> <i
+            class="material-icons right">create</i>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down font-secondary">
+            <li><a href="create_unit.html" class="black-text" style="width:10vw;">Discard</a></li>
+            <li><a href="sass.html" class="black-text">Save</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!--Container-->
+  <div class="container">
+
+    <!--Article header-->
+
+    <div class="article-header">
+      <h1 class="font-primary" style="font-size: 44px;">{{unit.head}}
+      </h1>
+      <div class="sub-text font-secondary">
+        <p>{{unit.lastUpdated}} &nbsp; • &nbsp; Updated {{unit.creationDate}} • Updating now...</p>
+      </div>
+      <div class="sub-text font-secondary" ng-show="unit.parents">Appears in:
+        <div class="chip" ng-repeat="appearsIn in unit.parents">
+          {{appearsIn}}
+        </div>
+      </div>
+      <div class="sub-text">
+        <p>
+
+        </p>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="row">
+      <h1 class="unit-head">Content</h1>
+      <div class="unit col s12 l6" id="unit-content" style="outline: thin,black; word-break:normal;" ng-click="rerender()">
+      </div>
+      
+      <div class="divider col s12"></div>
+
+
+      <div class="input-field col s12 l6">
+        
+        <textarea id="textarea1" class="materialize-textarea" ng-model="unit.content" class="unit col s6"
+          ng-change="rerender()" wrap="soft"></textarea>
+        <label for="textarea1">Code</label>
+      </div>
+    </div>
+
+    <!--Article Units-->
+    <h1 class="unit-head font-primary">Subunits</h1>
+    <div class="row" id="items">
+
+
+
+      <div class="col s12 l12 row valign-wrapper" id="items" ng-repeat="subUnit in unit.subUnit track by $index">
+        <div class="unit-edit-head z-depth-2 col s10">
+          <h5 id="{{subUnit}}" class="font-secondary truncate"
+            style="font-size: 18px; line-height: 1.333333; padding: 10px;">
+            {{subUnit}} <i class="material-icons right">swap_vert</i></h5>
+        </div>
+        <i class="material-icons col s1" ng-click="deleteThis($index)">close</i>
+      </div>
+
+
+
+
+      <!--Some code here </> -->
+      <!-- <code style="padding: 1em; border-radius: 1px;" class="col s12">Hello there</code> -->
+    </div>
+
+    <!-- new -->
+    <div class="row valign-wrapper">
+
+
+
+      <h2 class="font-primary unit-head">Add new</h2>
+
+      <div class="input-field col s8" ng-click="loadOptions()">
+        <input list="units" type="text" ng-model="select" placeholder="Select Subunits">
+        <datalist id="units">
+          <option ng-repeat="subUnit in subUnits track by $index" value="{{subUnit.head}}">
+        </datalist>
+      </div>
+
+      <div class="btn waves-effect col s2 flat white z-depth-0 black-text center" type="menu"
+        style="border-style: solid; border-radius: 25px; border-width: thin; border-color: black;"
+        ng-click="addSubUnit(select)">
+        Add<i class="material-icons right" style="margin-left:0">add</i>
+      </div>
+    </div>
+
+
+
+<br><br><br><br>
+    <div class="btn waves-effect flat black z-depth-0 center" type="menu"
+      style="border-style: solid; border-radius: 25px; border-width: thin; border-color: black; width: 100%; margin-bottom: 50px;"
+      ng-click="update()">
+      submit<i class="material-icons right" style="margin-left:0">save</i>
+    </div>
+
+
+  </div>
+  <!--Content ends here-->
+
+
+  <!-- JS at the end of the body for fast loading-->
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <!--Controller-->
+  <script src="js/edit_unit.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems, {});
+      var tooltipelems = document.querySelectorAll('.tooltipped');
+      var tooltipinstances = M.Tooltip.init(tooltipelems, {});
+    });
+  </script>
+</body>
+
+
+</html>

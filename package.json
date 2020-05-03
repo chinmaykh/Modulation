@@ -1,0 +1,19 @@
+{
+  "name": "modulation",
+  "version": "1.0.0",
+  "description": "A module like app for hosting my lessons",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js"
+  },
+  "author": "Chinmay K Haritas",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "express": "4.17.1",
+    "https": "1.0.0",
+    "mongoose": "5.9.10",
+    "nodemailer": "^6.4.6",
+    "sortablejs": "^1.10.2"
+  }
+}

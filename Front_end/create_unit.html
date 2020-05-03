@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="modulesApp">
+
+<head>
+  <!--First the metadata-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons&display=swap" rel="stylesheet">
+  <!--Next the stylesheets-->
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+  <!-- The title -->
+  <title>Modulation</title>
+</head>
+
+
+<style>
+  body {
+    color: black;
+  }
+
+  .font-primary {
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .font-secondary {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .article-header {
+    padding-top: 56px;
+    margin-bottom: 64px;
+  }
+
+  .sub-text {
+    font-size: 14px;
+  }
+
+  .unit {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .unit-content {
+    font-size: 18px !important;
+  }
+
+  .unit-head {
+    font-size: 24px !important;
+    margin-bottom: 30px !important;
+  }
+
+  code {
+    background-color: #f7f7f7
+  }
+</style>
+
+<body ng-controller="UnitCreationController">
+  <!--Content starts here-->
+  <div class="navbar-fixed">
+    <nav class="z-depth-2">
+      <div class="nav-wrapper row white">
+        <div class="col s12">
+          <a href="#!" class="brand-logo black-text font-primary">Modulation</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down font-secondary">
+            <li><a href="sass.html" class="black-text font-secondary">Sass</a></li>
+            <li><a href="sass.html" class="black-text">Sass</a></li>
+            <li><a href="sass.html" class="black-text">Sass</a></li>
+            <li><a href="sass.html" class="black-text">Sass</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!--Container-->
+  <div class="container">
+
+    <!--Article header-->
+    <div class="article-header">
+      <h1 class="font-primary" style="font-size: 44px;">Create a new unit</h1>
+    </div>
+
+    <div class="row">
+
+      <form ng-submit="createUnit()" class="col s12">
+
+        <div class="input-field col s12">
+          <input id="mod-head-input" type="text" class="unit-head" ng-model="unitHead"  autocomplete="off">
+          <label for="mod-head-input">Units Heading</label>
+        </div>
+
+        <div class="col s12">
+          <div class="chips chips-placeholder">
+
+          </div>
+        </div>
+
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea" ng-model="unitContent"></textarea>
+          <label for="textarea1">Unit Content </label>
+        </div>
+
+        <div class="input-field col s12">
+          <input list="units" type="text" ng-model="select" placeholder="Select Subunits">
+          <datalist id="units">
+            <option ng-repeat="unit in subUnits track by $index" value="{{unit.head}}">
+          </datalist>
+        </div>
+
+        <div class="btn waves-effect col s2 push-s10 flat white z-depth-0 black-text center" type="menu"
+          style="border-style: solid; border-radius: 25px; border-width: thin; border-color: black;"
+          ng-click="s_units.push(select);select = ''">
+          Add<i class="material-icons right" style="margin-left:0">add</i>
+        </div>
+
+        <!--INSTRUCTION TEXT-->
+        <div class="col s12">
+          <p>After selecting the unit, click on ADD button to add to the module.</p>
+        </div>
+
+        <!--UNITS LIST-->
+        <div class="col s12">
+          <ul class="collection" >
+            <li class="collection-item"ng-repeat="s_unit in s_units track by $index" >{{s_unit}}
+            </li>
+          </ul>
+        </div>
+
+
+        <!--Submit button-->
+        <button class="btn waves-effect col s2 push-s10 flat white z-depth-0 black-text" type="submit" name="action"
+          style="border-style: solid; border-radius: 25px; border-width: thin; border-color: black;">Submit
+          <i class="material-icons right">create</i>
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+  <!--Content ends here-->
+
+
+  <!-- JS at the end of the body for fast loading-->
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <!--Controller-->
+  <script src="js/unit.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      // Initializing sessionStorage
+
+      // Sidenav initialization 
+      var sidenav_elems = document.querySelectorAll('.sidenav');
+      var sidenav_instances = M.Sidenav.init(sidenav_elems, {});
+      // Chip elements
+      var chip_elems = document.querySelectorAll('.chips');
+      var chip_instances = M.Chips.init(chip_elems, {
+        'placeholder': 'Appears in:',
+        'onChipAdd': () => {
+          var chipsDataArray = []
+          for (let index = 0; index < chip_instances[0].chipsData.length; index++) {
+            chipsDataArray[index] = chip_instances[0].chipsData[index].tag
+          }
+          sessionStorage.setItem('appearsIn', JSON.stringify(chipsDataArray))
+        },
+        'onChipDelete': () => {
+          var chipsDataArray = []
+          for (let index = 0; index < chip_instances[0].chipsData.length; index++) {
+            chipsDataArray[index] = chip_instances[0].chipsData[index].tag
+          }
+          sessionStorage.setItem('appearsIn', JSON.stringify(chipsDataArray))
+        }
+      });
+
+
+
+
+
+    });
+  </script>
+</body>
+
+
+</html>
+<!-- 
+The four forces form the basis of everything we know. Of these, the most practically important and which answers almost all questions around us is Electromagnetism.
+
+The force is the second strongest and its current formulation was brought to you by James Clerk Maxwell 150 years ago. -->

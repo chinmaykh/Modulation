@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!--First the metadata-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons&display=swap" rel="stylesheet">
+  <!--Next the stylesheets-->
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!--MathJax-->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- The title -->
+  <title>Modulation </title>
+</head>
+
+
+<style>
+  body {
+    color: black;
+  }
+
+  .font-primary {
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .font-secondary {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .article-header {
+    padding-top: 56px;
+    margin-bottom: 64px;
+    text-transform: capitalize;
+  }
+
+  .sub-text {
+    font-size: 14px;
+  }
+
+  .unit {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .unit-content {
+    font-size: 18px;
+  }
+
+  .unit-head {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-transform: capitalize;
+  }
+
+  code {
+    background-color: #f7f7f7
+  }
+
+  .equation{
+    background-color: #f7f7f7
+  }
+</style>
+
+<body>
+  <!--Content starts here-->
+  <div class="navbar-fixed">
+    <nav class="z-depth-2">
+      <div class="nav-wrapper row white">
+        <div class="col s12">
+          <a href="#!" class="brand-logo black-text font-primary">Modulation</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down font-secondary">
+            <li><a href="create_unit.html" class="black-text">Create Unit</a></li>
+            <li><a href="sass.html" class="black-text">Sass</a></li>
+            <li><a href="sass.html" class="black-text">Sass</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!--Container-->
+  <div class="container">
+
+    <!--Article header-->
+
+    <div class="article-header">
+      <h1 class="font-primary" style="font-size: 44px;">
+        <!--Article Heading-->
+        Multivariable calculus
+
+      </h1>
+      <div class="sub-text font-secondary">
+        <p>April 30 &nbsp; • &nbsp; April 30 2020 </p>
+      </div>
+      <div class="sub-text font-secondary">Appears in:
+        <div class="chip">
+          Maths
+        </div>
+      </div>
+      <div class="sub-text">
+        <p>
+        </p>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <!--Article Units-->
+      <div class="unit col s12">
+        <h2 id="" class="font-primary unit-head" style="font-size: 24px; line-height: 1.333333;">
+          Nature of Stationary Points: Second order taylor formula
+          <a href="#" class="right">#</a>
+        </h2>
+
+        <div class="unit-content font-secondary">
+          <p class="tooltipped" data-position="top" data-tooltip="Critical Point: <b>Defn.</b> - &nabla; f(a) is zero ">
+            Once again imagine the hillock with a nice flowing river in it - Of course we are dealing with scalar
+            fields.
+
+            We have with us a <i class="blue-text">critical point.</i>
+          </p>
+          <br><br>
+          <code style="padding: 1em; border-radius: 1px; font-size: 14px;"
+            class="col s12 center">
+          <img src="images/surface_mount.png" style="width: 90%;">
+          </code>
+          <br><br><br>
+          <p>
+            We want to observe whether this is point is a <i>Maxima, Minima</i> or a <i>Saddle Point.</i>
+          </p>
+          <div class="divider"></div>
+          <p>
+            We can decide this by the sign of \( f(\vec x) - f(\vec a) \) for \(\vec x \)  near \(\vec a \) .
+            Look at this equation, the <i>First order taylor formula</i> for derivatives of scalar fields.
+          </p>
+          
+          <p style="padding: 1em; border-radius: 1px; font-size: 18px; text-justify: distribute;" class="col s12 center equation">
+            \[f(\vec a+ \vec y) - f(\vec a) = \nabla f( \vec a ) . \vec y + \lVert y\rVert\ E(\vec a,\vec y) \]
+          </p>
+          <br><br><br>
+          <p>
+             Substituting \(\nabla f(\vec a) = 0 \) in here, we get
+          </p>
+          <p style="padding: 1em; border-radius: 1px; font-size: 18px; text-justify: distribute;" class="col s12 center equation">
+            \[f(\vec a+ \vec y) - f(\vec a) = \lVert y\rVert\ E(\vec a,\vec y) \]
+          </p>
+          <p>As the norm of a vector is always positive, the deciding factor is that error term!</p>
+          <div class="divider"></div>
+ 
+          <p>Now it's a matter of computing this term - E</p> 
+
+          <p class="tooltipped" data-position="top" data-tooltip="Hessian Matrix: <b>Defn.</b> - Special matrix to built from second derivatives. ( when they exist )">
+            It can be easily computed that by doing by expressing it as the <i class="blue-text">Hessian Matrix</i></p>
+          <p style="padding: 1em; border-radius: 1px; font-size: 18px; text-justify: distribute;" class="col s12 center equation">
+            \[\frac 12 \sum\limits_{i = 1}^n \sum\limits_{j = 1}^n  {D_{ij}}f(\vec a){a_i} {a_j} \] 
+          </p>
+          <p>Here, the Ds are the partial derivatives. As this is a Quadratic Form, it can be simply written as</p>
+          <p style="padding: 1em; border-radius: 1px; font-size: 18px; text-justify: distribute;" class="col s12 center equation">
+             \[\frac 12 y^t H(\vec a) y \ \ \ | \ \ \  H(\vec x) = [D_{ij}f(\vec x)] \]
+          </p>
+          <p>The special form is of most value to us as it provides us a method of easy computation. Once expressed in this form
+            the sign of the term is explained by Diagonalization of Quadratic forms.
+
+            <ol>
+              <li>Iff all eigenvalues of H(x) are positive, the whole term if positive</li>
+              <li>Iff all eigenvalues of H(x) are negative, the whole term if negative</li>
+            </ol>
+
+            Thus applying the same for H(a), we get the required implications
+            <ol>
+              <li>Iff all eigenvalues of H(a) are positive, there is a relative minimum at a</li>
+              <li>Iff all eigenvalues of H(x) are negative, there is a relative maximum at a</li>
+              <li>If the eigenvalues are mixed, then H(x) has a saddle point at a </li>
+            </ol>
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!--Some code here </> -->
+      <p style="padding: 1em; border-radius: 1px; font-size: 18px; text-justify: distribute;" class="col s12 center equation">
+        \(\)
+      </p>
+
+
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
+    <code style="padding: 1em; border-radius: 1px;" class="col s12">Hello there</code>
+
+  </div>
+  <!--Content ends here-->
+
+
+  <!-- JS at the end of the body for fast loading-->
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  
+  <!--Controller-->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var sidenavelems = document.querySelectorAll('.sidenav');
+      var sidenavinstances = M.Sidenav.init(sidenavelems, {});
+      var tooltipelems = document.querySelectorAll('.tooltipped');
+      var tooltipinstances = M.Tooltip.init(tooltipelems, {});
+    });
+  </script>
+</body>
+
+
+</html>

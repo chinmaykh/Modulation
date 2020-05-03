@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="modulesApp">
+
+<head>
+  <!--First the metadata-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons&display=swap" rel="stylesheet">
+  <!--Next the stylesheets-->
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!--MathJax-->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+  <!-- The title -->
+  <title>Modulation </title>
+</head>
+
+
+<style>
+  body {
+    color: black;
+  }
+
+  .font-primary {
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .font-secondary {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .article-header {
+    padding-top: 56px;
+    margin-bottom: 64px;
+    text-transform: capitalize;
+  }
+
+  .sub-text {
+    font-size: 14px;
+  }
+
+  .unit {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .unit-content {
+    font-size: 18px;
+  }
+
+  .unit-head {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-transform: capitalize;
+  }
+
+  code {
+    background-color: #f7f7f7
+  }
+
+  .equation{
+    background-color: #f7f7f7
+  }
+</style>
+
+<body ng-controller='ModuleController'>
+  <!--Content starts here-->
+  <div class="navbar-fixed">
+    <nav class="z-depth-2">
+      <div class="nav-wrapper row white">
+        <div class="col s12">
+          <a href="#!" class="brand-logo black-text font-primary">Modulation</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down font-secondary">
+            <li><a href="create_unit.html" class="black-text">Create Unit</a></li>
+            <li><a href="sass.html" class="black-text">Sass</a></li>
+            <li><a href="sass.html" class="black-text">Sass</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!--Container-->
+  <div class="container">
+
+    <!--Article header-->
+  
+    <div class="article-header">
+      <h1 class="font-primary" style="font-size: 44px;">{{unit.head}}</h1>
+      <div class="sub-text font-secondary">
+        <p>{{unit.lastUpdated}} &nbsp; • &nbsp; Updated {{unit.creationDate}}</p>
+      </div>
+      <div class="sub-text font-secondary" ng-show="unit.parents">Appears in:
+        <div class="chip"  ng-repeat="appearsIn in unit.parents">
+          {{appearsIn}}
+        </div>
+      </div>
+      <div class="sub-text"><p>
+        
+      </p></div>
+    </div>
+
+    
+
+    <div class="row">
+      <!--Article Units-->
+      <div class="unit col s12" id="unit-content">
+      </div>
+      <div class="unit col s12" ng-repeat="subUnit in unit.subUnit track by $index">
+
+        <h2 id="{{subUnit.head}}" class="font-primary unit-head" style="font-size: 24px; line-height: 1.333333;">
+          {{subUnit.head}} <a href="#{{subUnit.head}}" class="right"># <i class="material-icons black-text right" n>open_in_new</i></a></h2>
+
+        <div class="unit-content">
+          <p>{{subUnit.content}}</p>
+        </div>
+
+      </div>
+
+
+
+      <!--Some code here </> -->
+      <!-- <code style="padding: 1em; border-radius: 1px;" class="col s12">Hello there</code> -->
+
+
+    </div>
+  </div>
+  <!--Content ends here-->
+
+
+  <!-- JS at the end of the body for fast loading-->
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+  <!--Controller-->
+  <script src="http://localhost:8080/js/unit.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems, {});
+      var tooltipelems = document.querySelectorAll('.tooltipped');
+      var tooltipinstances = M.Tooltip.init(tooltipelems, {});
+    });
+  </script>
+</body>
+
+
+</html>

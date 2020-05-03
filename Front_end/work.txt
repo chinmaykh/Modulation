@@ -1,0 +1,17 @@
+this is going to be the fastes time i take to setup a route for this app now i don't know what it takes but this seems
+like the perfect thing to don
+
+Import form storytrail
+Customise all options
+Done
+
+Create a module creatio page -> start reverse
+Start from the module page
+
+edit module page
+
+
+let x = $scope.unit.subUnit[evt.newIndex]
+      $scope.unit.subUnit[evt.newIndex ] = $scope.unit.subUnit[evt.oldIndex ]
+      $scope.unit.subUnit[evt.oldIndex ] = x
+      console.log($scope.unit.subUnit)

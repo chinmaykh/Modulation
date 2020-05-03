@@ -1,0 +1,70 @@
+
+body{
+  background-image: url('/background_shadow/background_shadow.001.jpeg');
+}
+
+  .header {
+    font-family: 'Caveat', cursive;
+    background-color: white
+    ;
+  }
+
+  .demo-content {
+    font-family: 'Kalam', cursive;
+  }
+
+  .module-heading {
+    font-family: Montserrat
+  }
+
+  /* .ivory{
+    background-color: #EAEAE0;
+  }
+  .neon-green{
+    background-color: #1DC690;
+  }
+  .blue-grotto{
+    background-color: #278AB0;
+  } */
+  
+  /*
+  yellow accent-2
+  .amaing
+  #FFDE2B
+  #FFB67A
+  #FF98D2
+  R
+  #93FF60
+  #00FFBC
+  #00FFFF
+  */
+
+  .carnationy{
+    background-color:#FF98D2;
+  }
+
+  .macarony{
+    background-color: #FFB67A;
+  }
+
+  .sunglowy{
+    background-color: #FFDE2B;
+  }
+
+  .turquoisy{
+    background-color: #93FF60;
+  }
+
+  .bturq{
+    background-color: #00FFBC;
+  }
+
+  .cyany{
+    background-color: #00ffff;
+  }
+
+  .module-list{
+    padding: 2em;
+    border-radius: 2em;
+    z-index: 3em;
+  }
